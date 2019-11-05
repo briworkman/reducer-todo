@@ -1,0 +1,30 @@
+import React, { useState } from "react";
+
+export const TodoForm = ({ dispatch }) => {
+  const [item, setItem] = useState("");
+
+  const handleChanges = e => {
+    setItem(e.target.value);
+  };
+
+  const submitForm = e => {
+    e.preventDefault();
+    dispatch({
+      type: "ADD_ITEM",
+      payload: item
+    });
+    setItem("");
+  };
+
+  return (
+    <div className="todo-form">
+      <form onSubmit={submitForm}>
+        <label htmlFor="todo" hidden>
+          Todo
+        </label>
+        <input name="todo" onChange={handleChanges} value={item} />
+        <button>Add Todo</button>
+      </form>
+    </div>
+  );
+};

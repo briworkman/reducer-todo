@@ -1,6 +1,6 @@
 import React, { useReducer, useState } from "react";
 
-export const todos = [
+export const todo = [
   {
     item: "Learn about reducers",
     completed: false,
@@ -20,6 +20,18 @@ export const todos = [
 
 export const appReducer = (state, action) => {
   switch (action.type) {
+    case "ADD_ITEM":
+      return [
+        ...state,
+        { item: action.payload, completed: false, id: Date.now() }
+      ];
+    case "TOGGLE_COMPLETED":
+      return state.map(todo => {
+        if (todo.id === action.payload) {
+          return { ...todo, completed: !todo.completed };
+        }
+        return todo;
+      });
     default:
       return state;
   }
