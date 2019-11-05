@@ -16,6 +16,13 @@ export const TodoForm = ({ dispatch }) => {
     setItem("");
   };
 
+  const clearCompleted = e => {
+    e.preventDefault();
+    dispatch({
+      type: "CLEAR"
+    });
+  };
+
   return (
     <div className="todo-form">
       <form onSubmit={submitForm}>
@@ -24,6 +31,7 @@ export const TodoForm = ({ dispatch }) => {
         </label>
         <input name="todo" onChange={handleChanges} value={item} />
         <button>Add Todo</button>
+        <button onClick={clearCompleted}>Clear Completed</button>
       </form>
     </div>
   );
